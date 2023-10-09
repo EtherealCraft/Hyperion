@@ -140,6 +140,7 @@ public class ConfigManager {
 		config.addDefault("Abilities.Earth.LavaDisk.MaxDamage", 6.0);
 		config.addDefault("Abilities.Earth.LavaDisk.MinDamage", 1.0);
 		config.addDefault("Abilities.Earth.LavaDisk.Cooldown", 7000);
+		config.addDefault("Abilities.Earth.LavaDisk.Duration", 0);
 		config.addDefault("Abilities.Earth.LavaDisk.Range", 24);
 		config.addDefault("Abilities.Earth.LavaDisk.RegenDelay", 10000);
 		config.addDefault("Abilities.Earth.LavaDisk.PassThroughEntities", true);

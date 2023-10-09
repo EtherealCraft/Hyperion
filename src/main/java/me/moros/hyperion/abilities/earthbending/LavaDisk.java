@@ -69,6 +69,8 @@ public class LavaDisk extends LavaAbility implements AddonAbility, MultiAbility 
 	private double minDamage;
 	@Attribute(Attribute.COOLDOWN)
 	private long cooldown;
+	@Attribute(Attribute.DURATION)
+	private long duration;
 	@Attribute(Attribute.RANGE)
 	private int range;
 	@Attribute("RegenDelay")
@@ -91,6 +93,7 @@ public class LavaDisk extends LavaAbility implements AddonAbility, MultiAbility 
 		maxDamage = Hyperion.getPlugin().getConfig().getDouble("Abilities.Earth.LavaDisk.MaxDamage");
 		minDamage = Hyperion.getPlugin().getConfig().getDouble("Abilities.Earth.LavaDisk.MinDamage");
 		cooldown = Hyperion.getPlugin().getConfig().getLong("Abilities.Earth.LavaDisk.Cooldown");
+		duration = Hyperion.getPlugin().getConfig().getLong("Abilities.Earth.LavaDisk.Duration");
 		range = Hyperion.getPlugin().getConfig().getInt("Abilities.Earth.LavaDisk.Range");
 		regenDelay = Hyperion.getPlugin().getConfig().getLong("Abilities.Earth.LavaDisk.RegenDelay");
 		passHit = Hyperion.getPlugin().getConfig().getBoolean("Abilities.Earth.LavaDisk.PassThroughEntities");
@@ -110,6 +113,11 @@ public class LavaDisk extends LavaAbility implements AddonAbility, MultiAbility 
 	public void progress() {
 		if (!bPlayer.canBendIgnoreBindsCooldowns(this) || !isLocationSafe() || location.distanceSquared(player.getEyeLocation()) > range * range) {
 			remove();
+			return;
+		}
+
+		if (this.duration > 0 && System.currentTimeMillis() > this.getStartTime() + this.duration) {
+			this.remove();
 			return;
 		}
 
