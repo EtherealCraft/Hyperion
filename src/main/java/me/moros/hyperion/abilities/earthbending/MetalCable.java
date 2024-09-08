@@ -60,6 +60,9 @@ public class MetalCable extends MetalAbility implements AddonAbility {
 	private Location origin;
 	private Arrow cable;
 	private CableTarget target;
+	public CableTarget getTarget() {
+		return target;
+	}
 
 	@Attribute(Attribute.DAMAGE)
 	private double damage;
@@ -79,8 +82,13 @@ public class MetalCable extends MetalAbility implements AddonAbility {
 		super(player);
 
 		if (hasAbility(player, MetalCable.class)) {
-			getAbility(player, MetalCable.class).attemptLaunchTarget();
-			return;
+			MetalCable ability = getAbility(player, MetalCable.class);
+			if (ability.getTarget() == null || ability.getTarget().getType() == CableTarget.Type.BLOCK) {
+				ability.remove();
+			} else {
+				ability.attemptLaunchTarget();
+				return;
+			}
 		}
 
 		if (!hasRequiredInv() || !bPlayer.canBend(this)) {
