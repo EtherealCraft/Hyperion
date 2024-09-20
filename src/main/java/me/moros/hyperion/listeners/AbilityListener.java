@@ -128,7 +128,7 @@ public class AbilityListener implements Listener {
 		final CoreAbility coreAbility = bPlayer.getBoundAbility();
 		final String abilityName = bPlayer.getBoundAbilityName();
 
-		if (!(coreAbility instanceof AddonAbility)) {
+		if (!(coreAbility instanceof AddonAbility) && !abilityName.equalsIgnoreCase("phasechange")) {
 			return;
 		}
 		if (bPlayer.canBendIgnoreCooldowns(coreAbility)) {
@@ -156,7 +156,7 @@ public class AbilityListener implements Listener {
 					Combustion.attemptExplode(player);
 				}
 			} else if (coreAbility instanceof WaterAbility && bPlayer.isElementToggled(Element.WATER)) {
-				if (abilityName.equalsIgnoreCase("icecrawl")) {
+				if (abilityName.equalsIgnoreCase("phasechange")) {
 					IceCrawl.shootLine(player);
 					if (player.isSneaking()) {
 						IceDrill.setClicked(player);
