@@ -156,7 +156,7 @@ public class AbilityListener implements Listener {
 					Combustion.attemptExplode(player);
 				}
 			} else if (coreAbility instanceof WaterAbility && bPlayer.isElementToggled(Element.WATER)) {
-				if (abilityName.equalsIgnoreCase("phasechange")) {
+				if (abilityName.equalsIgnoreCase("icecrawl")) {
 					IceCrawl.shootLine(player);
 					if (player.isSneaking()) {
 						IceDrill.setClicked(player);
